@@ -153,7 +153,7 @@ mk_sqlite3()
 
 get_options()
 {
-while getopts ":t:i:p:h" opt; do
+while getopts ":t:i:p:hv" opt; do
         case "$opt" in
             t)
                 if [ "$OPTARG" = "all" ]; then
@@ -203,6 +203,18 @@ while getopts ":t:i:p:h" opt; do
                 echo "  -i    cmake install prefix; if prefix is unspecified, assume ./thirdparty"
                 echo "  -t    third-party library"
                 echo "  -p    http/https proxy"
+                echo "  -v    version of libraries"
+                exit 0
+            ;;
+            v)
+                echo "Library       Version"
+                echo "boost         1.76.0"
+                echo "glog          0.5.0"
+                echo "gtest         1.11.0"
+                echo "protobuf      3.17.3"
+                echo "cppzmq        4.7.1"
+                echo "rapidjson     1.1.0"
+                echo "sqlite3       3.35.5"
                 exit 0
             ;;
             \?)
