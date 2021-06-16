@@ -3,7 +3,7 @@ set -e
 
 # HTTP/HTTPS代理
 # eg. PROXY="http_proxy=xxx.xxx.xxx.xxx:xxxx"
-PROXY="https_proxy=192.168.31.52:32538"
+PROXY=""
 
 # 当前路径
 CUR_PATH="$(pwd)"
@@ -47,17 +47,6 @@ get_filename_from_url()
 {
     local url="$1"
     echo "${url##*/}"
-}
-
-# 获取文件名前缀
-get_file_prefix()
-{
-    local filename="$1"
-    if [ -n "$filename" ]; then
-        local tmp 
-        tmp="${filename%.*}"
-        echo "${tmp%.*}"
-    fi
 }
 
 # 下载并解压，返回文件夹名称
@@ -209,7 +198,7 @@ while getopts ":t:i:p:h" opt; do
                 echo "PROXY=$PROXY"
             ;;
             h)
-                echo "Usage: bash mkt.sh [-h] [-i prefix] [-p proxy] [-t all | boost | glog | gtest | protobuf | cppzmq | rapidjson]"
+                echo "Usage: bash mkt.sh [-h] [-i prefix] [-p proxy] [-t all | boost | glog | gtest | protobuf | cppzmq | rapidjson | sqlite3]"
                 echo "  Compile C++ third-party libaries"
                 echo "  -i    cmake install prefix; if prefix is unspecified, assume ./thirdparty"
                 echo "  -t    third-party library"
