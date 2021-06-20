@@ -28,10 +28,10 @@ example:
 # compile glog:
 bash mkt.sh -t glog
 # set cmake install prefix path
-bash mkt.sh -t glog -p ~/test
+bash mkt.sh -t glog -i ~/test
 # set http/https proxy
-bash mkt.sh -t glog -f "http_porxy=yourproxy.com:port"
-bash mkt.sh -t glog -f "https_porxy=yourproxy.com:port"
+bash mkt.sh -t glog -p "http_porxy=yourproxy.com:port"
+bash mkt.sh -t glog -p "https_porxy=yourproxy.com:port"
 ```
 
 ```shell
