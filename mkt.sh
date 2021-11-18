@@ -36,7 +36,7 @@ pre_mk()
     fi
 
     if [ ! -d "$INSTALL_PREFIX" ]; then
-        mkdir "$STORE_PATH"
+        mkdir "$INSTALL_PREFIX"
     fi
     install_dependencies
 }
