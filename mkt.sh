@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 # HTTP/HTTPS代理
 # eg. PROXY="http_proxy=xxx.xxx.xxx.xxx:xxxx"
@@ -151,6 +150,16 @@ mk_sqlite3()
     make && make install
 }
 
+mk_jsoncpp()
+{
+    local url="https://github.com/open-source-parsers/jsoncpp/archive/refs/tags/1.9.3.tar.gz"
+    down_and_unzip "$url"
+    mkdir build
+    cd build
+    cmake -DCMAKE_BUILD_TYPE=release -DBUILD_STATIC_LIBS=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX="$INSTALL_PREFIX" ..
+    make && make install
+}
+
 get_options()
 {
 while getopts ":t:i:p:hv" opt; do
@@ -165,6 +174,7 @@ while getopts ":t:i:p:hv" opt; do
                     mk_cppzmq
                     mk_rapidjson
                     mk_sqlite3
+                    mk_jsoncpp
                 elif [ "$OPTARG" = "boost" ]; then
                     pre_mk
                     mk_boost
@@ -185,6 +195,8 @@ while getopts ":t:i:p:hv" opt; do
                 elif [ "$OPTARG" = "sqlite3" ]; then
                     pre_mk
                     mk_sqlite3
+                elif [ "$OPTARG" = "jsoncpp" ]; then
+                    mk_jsoncpp
                 else
                     echo "invalid optargs"   
                 fi
@@ -215,6 +227,7 @@ while getopts ":t:i:p:hv" opt; do
                 echo "cppzmq        4.7.1"
                 echo "rapidjson     1.1.0"
                 echo "sqlite3       3.35.5"
+                echo "jsoncpp       1.9.3"
                 exit 0
             ;;
             \?)
